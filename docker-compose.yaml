@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  oidc-login-tools-dev:
+    build:
+      dockerfile: .devcontainer/Dockerfile
+      context: .
+    tty: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/src/:delegated
+      - ~/.ssh:/root/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+    container_name: oidc-login-tools-dev
+    environment:
+      TZ: Asia/Tokyo
