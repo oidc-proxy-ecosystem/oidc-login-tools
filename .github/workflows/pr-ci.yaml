@@ -31,5 +31,5 @@ jobs:
       - name: Validate .goreleaser.yml with goreleaser-action
         uses: goreleaser/goreleaser-action@v1
         with:
-          version: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
+          version: latest
           args: release --snapshot --skip-publish --rm-dist --debug
