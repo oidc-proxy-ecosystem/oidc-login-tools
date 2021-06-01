@@ -52,7 +52,6 @@ func (h *handler) Action(certFile, keyFile string) error {
 
 func New(port int, oidc *config.Oidc, authenticator *auth.Authenticator) Process {
 	h := &handler{
-		log:           log.Default(),
 		oidc:          oidc,
 		authenticator: authenticator,
 		port:          port,

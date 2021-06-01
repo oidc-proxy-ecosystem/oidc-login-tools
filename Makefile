@@ -1,6 +1,5 @@
-NAME := proxy
-MEMORY := memory
-VERSION := v0.0.3-rc1
+NAME := oidc-login-tools
+VERSION := v0.0.1-alpha01
 REVISION := $(shell git rev-parse --short HEAD)
 SRCS    := $(shell find . -type d -name archive -prune -o -type f -name '*.go')
 LDFLAGS := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.Revision=$(REVISION)\" -extldflags \"-static\""
@@ -18,8 +17,7 @@ deps:
 .PHONY: clean
 clean:
 	rm -rf bin/*
-	rm -rf dsit/*
-	rm -rf oidc-plugin/*
+	rm -rf dist/*
 
 .PHONY: cross-build
 cross-build: deps
@@ -38,9 +36,3 @@ dist:
 	$(DIST_DIRS) tar -zcf $(NAME)-$(VERSION)-{}.tar.gz {} \; && \
 	$(DIST_DIRS) zip -r $(NAME)-$(VERSION)-{}.zip {} \; && \
 	cd ..
-
-plugin/$(MEMORY):
-	go build -o oidc-plugin/$(MEMORY) examples/memory/main.go
-
-plugin/$(MEMORY)/static:
-	go build -a -tags netgo -installsuffix netgo -o oidc-plugin/$(MEMORY) examples/memory/main.go

@@ -17,3 +17,4 @@
 *.env
 auth.json
 .vscode/launch.json
+/bin
