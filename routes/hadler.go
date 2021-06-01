@@ -18,7 +18,6 @@ type Process interface {
 
 type handler struct {
 	mux           *http.ServeMux
-	log           *log.Logger
 	state         string
 	authenticator *auth.Authenticator
 	oidc          *config.Oidc
@@ -34,7 +33,7 @@ func (h *handler) Action(certFile, keyFile string) error {
 	}
 	state := base64.StdEncoding.EncodeToString(b)
 	u := h.authenticator.Config.AuthCodeURL(state, h.oidc.SetValues()...)
-	h.log.Printf("open browser: %s", u)
+	log.Printf("open browser: %s", u)
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", h.port))
 	if err != nil {
 		return err
