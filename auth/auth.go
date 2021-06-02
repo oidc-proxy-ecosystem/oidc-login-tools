@@ -2,7 +2,6 @@ package auth
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/coreos/go-oidc"
 	"github.com/oidc-proxy-ecosystem/oidc-tools/config"
@@ -15,7 +14,8 @@ type Authenticator struct {
 	Ctx      context.Context
 }
 
-func NewAuthenticator(ctx context.Context, port int, oidcConf config.Oidc) (*Authenticator, error) {
+func NewAuthenticator(ctx context.Context, oidcConf config.Oidc, callbackUrl string) (*Authenticator, error) {
+	redirectUrl := callbackUrl
 	provider, err := oidc.NewProvider(ctx, oidcConf.Provider)
 	if err != nil {
 		return nil, err
@@ -23,7 +23,7 @@ func NewAuthenticator(ctx context.Context, port int, oidcConf config.Oidc) (*Aut
 	o2conf := oauth2.Config{
 		ClientID:     oidcConf.ClientId,
 		ClientSecret: oidcConf.ClientSecret,
-		RedirectURL:  fmt.Sprintf("https://localhost:%d/oauth/callback", port),
+		RedirectURL:  redirectUrl,
 		Endpoint:     provider.Endpoint(),
 		Scopes:       oidcConf.Scopes,
 	}
