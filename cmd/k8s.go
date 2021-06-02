@@ -20,7 +20,6 @@ var KuberntesConfigCommand = &cli.Command{
 			Aliases: []string{"cln"},
 			Usage:   "cluster name",
 			Value:   "default-cluster",
-			EnvVars: []string{""},
 		},
 		&cli.StringFlag{
 			Name:     "cluster-url",
