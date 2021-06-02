@@ -1,4 +1,4 @@
-NAME := oidc-login-tools
+NAME := oidc-tools
 VERSION := v0.0.1-alpha01
 REVISION := $(shell git rev-parse --short HEAD)
 SRCS    := $(shell find . -type d -name archive -prune -o -type f -name '*.go')

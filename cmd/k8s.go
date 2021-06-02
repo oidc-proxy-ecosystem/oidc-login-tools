@@ -20,6 +20,7 @@ var KuberntesConfigCommand = &cli.Command{
 			Aliases: []string{"cln"},
 			Usage:   "cluster name",
 			Value:   "default-cluster",
+			EnvVars: []string{""},
 		},
 		&cli.StringFlag{
 			Name:     "cluster-url",
@@ -50,18 +51,21 @@ var KuberntesConfigCommand = &cli.Command{
 			Aliases:  []string{"idp"},
 			Usage:    "identity provider isser url",
 			Required: true,
+			EnvVars:  []string{"OIDC_PROVIDER"},
 		},
 		&cli.StringFlag{
 			Name:     "client-id",
 			Aliases:  []string{"id"},
 			Usage:    "identity provider client_id",
 			Required: true,
+			EnvVars:  []string{"OIDC_CLIENT_ID"},
 		},
 		&cli.StringFlag{
 			Name:     "client-secret",
 			Aliases:  []string{"sec"},
 			Usage:    "identity provider client_secret",
 			Required: true,
+			EnvVars:  []string{"OIDC_CLIENT_SECRET"},
 		},
 		&cli.StringFlag{
 			Name:    "token-file",
