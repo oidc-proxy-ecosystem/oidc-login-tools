@@ -4,7 +4,7 @@ ENV DOCKER_CLIENT_VERSION=19.03.8
 ENV DOCKER_API_VERSION=1.40
 ADD https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_CLIENT_VERSION}.tgz .
 
-FROM golang:1.16-buster
+FROM golang:1.19.3-buster
 ENV TZ=Asia/Tokyo
 ARG ARG_DOCKER_CLIENT_VERSION=19.03.8
 
